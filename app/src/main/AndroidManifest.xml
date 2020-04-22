@@ -16,7 +16,8 @@
         android:label="音乐播放器"
         android:logo="@mipmap/logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
 
         <activity
             android:name="com.william.RDC.musicplayer.activity.DisplayActivity"
@@ -69,5 +70,7 @@
         <service
             android:name="com.william.RDC.musicplayer.service.MusicService"
             android:exported="true" />
+
     </application>
+
 </manifest>
