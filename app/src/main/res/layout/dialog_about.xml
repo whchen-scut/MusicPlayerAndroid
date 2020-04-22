@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/time"
-        android:text="版本号：R.03"
+        android:text="版本号：R.04"
         android:textSize="20sp"
         android:textIsSelectable="true"
         android:layout_marginStart="@dimen/dp_20"
