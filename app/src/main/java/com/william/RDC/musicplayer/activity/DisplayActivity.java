@@ -798,7 +798,7 @@ public class DisplayActivity extends BaseActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.about))
                 .setIcon(R.drawable.about)
-                .setView(R.layout.dialog_feedback);
+                .setView(R.layout.dialog_about);
         builder.create().show();
     }
 

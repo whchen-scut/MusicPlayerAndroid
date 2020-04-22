@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "0.9.9"
+        versionName "0.9.11"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -20,7 +20,7 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "MusicPlayer_RDC.0.9.9.apk"
+            outputFileName = "MusicPlayer_RDC.0.9.11.apk"
         }
     }
 
@@ -39,6 +39,6 @@ dependencies {
         force = true
 
     }
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
 }

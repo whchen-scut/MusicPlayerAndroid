@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/rest_of_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_10"
         android:text="倒计时关闭"
         android:textSize="@dimen/sp_20" />
 
@@ -33,17 +34,17 @@
             android:id="@+id/btn_time_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="开始"
-            android:background="@drawable/btn_rounded_corner_black_stroke"/>
+            android:background="@drawable/btn_rounded_corner_black_stroke"
+            android:text="开始" />
 
         <Button
             android:id="@+id/btn_time_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/btn_time_ok"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="取消"
-            android:background="@drawable/btn_rounded_corner_black_stroke"/>
+            android:layout_toEndOf="@id/btn_time_ok"
+            android:background="@drawable/btn_rounded_corner_black_stroke"
+            android:text="取消" />
     </RelativeLayout>
 
 </LinearLayout>

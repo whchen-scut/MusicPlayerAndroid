@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/holo_purple"
         android:foregroundTint="#FFFFFF"
-        app:navigationIcon="@drawable/back_detail_activity"
+        app:navigationIcon="@drawable/back"
         app:title="我收藏的音乐"
         app:titleTextColor="#FFFFFF" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/listView_activity_myLoveSongs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray_color"
+        android:background="@android:color/background_light"
         android:fadeScrollbars="true"
         android:foregroundTint="#FFFFFF"
         android:scrollbarSize="@dimen/dp_5"

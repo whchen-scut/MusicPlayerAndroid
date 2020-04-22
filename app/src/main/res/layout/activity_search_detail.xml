@@ -6,12 +6,13 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.SearchActivity">
+
     <androidx.appcompat.widget.Toolbar
 
         android:id="@+id/toolbar_activity_display"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/black_color"
+        android:background="@android:color/holo_purple"
         app:navigationIcon="@drawable/back"
         app:title="@string/search"
         app:titleTextColor="@color/white_color" />
@@ -20,7 +21,7 @@
         android:id="@+id/search_LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black_color"
+        android:background="@android:color/holo_purple"
         android:orientation="vertical"
         android:visibility="gone">
 

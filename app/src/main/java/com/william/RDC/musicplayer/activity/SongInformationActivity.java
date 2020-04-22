@@ -413,7 +413,7 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
     /*toolbar的menu加载*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_song_detail_activity,menu);
+        getMenuInflater().inflate(R.menu.menu_song_activity,menu);
         return true;
     }
     /*menu的点击事件*/

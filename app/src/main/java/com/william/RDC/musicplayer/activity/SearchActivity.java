@@ -2,7 +2,11 @@ package com.william.RDC.musicplayer.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -14,18 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.william.RDC.musicplayer.R;
 import com.william.RDC.musicplayer.model.Song;
 import com.william.RDC.musicplayer.model.SongsCollector;
 import com.william.RDC.musicplayer.service.MusicService;
 import com.william.RDC.musicplayer.tool.SongAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -44,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detail);
-        Log.w("SearchDetailActivity", "进入onCreate");
+        Log.w("SearchActivity", "进入onCreate");
         toolbar = findViewById(R.id.toolbar_activity_display);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -103,19 +103,19 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.w("SearchDetailActivity", "进入onStart");
+        Log.w("SearchActivity", "进入onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.w("SearchDetailActivity", "进入onResume");
+        Log.w("SearchActivity", "进入onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.w("SearchDetailActivity", "进入onPause");
+        Log.w("SearchActivity", "进入onPause");
     }
 
     /**
@@ -131,7 +131,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.w("SearchDetailActivity", "进入onDestroy");
+        Log.w("SearchActivity", "进入onDestroy");
         search_list = null;//防止内存泄露
         songsList = null;
     }
@@ -139,7 +139,7 @@ public class SearchActivity extends AppCompatActivity {
     /***********toolbar的menu***********/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search_detail_activity, menu);
+        getMenuInflater().inflate(R.menu.menu_search_activity, menu);
         MenuItem search_item = menu.getItem(0);
         SearchView searchView = (SearchView) search_item.getActionView();
         searchView.onActionViewExpanded();//展开模式
@@ -190,24 +190,24 @@ public class SearchActivity extends AppCompatActivity {
         songsList = SongsCollector.getSongsList();
         num_songs = songsList.size();
         if (songsList.isEmpty() || !(SongsCollector.size()>0)  ) {
-            Toast.makeText(SearchActivity.this, "本机无歌曲,请下载", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchActivity.this, "本地没有找到音频，您可以到浏览器下载。", Toast.LENGTH_SHORT).show();
             return;
         }
-        Log.w("SearchDetailActivity","搜索正在执行");
+        Log.w("SearchActivity","正在搜索");
         String current_song_name;
         char[] charArray_current_song_name;
         int cur_name_len;
         float matching_degree = 0;//匹配值
         float percent_matching_degree;//百分比匹配度
         for (int i = 0; i < num_songs; i++) {//遍历整个列表  匹配歌曲名
-//            Log.w("SearchDetailActivity","第" + i + "次遍历");
+//            Log.w("SearchActivity","第" + i + "次遍历");
             //获取列表中当前歌曲名
             current_song_name = songsList.get(i).getTitle();
             //当前歌曲名转换为字符数组
             charArray_current_song_name = current_song_name.toCharArray();
             //当前歌曲名转换为的字符数组的长度
             cur_name_len = charArray_current_song_name.length;
-//            Log.w("SearchDetailActivity", "目标长度"+mes_len+"    当前歌名长度"+cur_name_len);
+//            Log.w("SearchActivity", "目标长度"+mes_len+"    当前歌名长度"+cur_name_len);
             /**目标歌名比当前歌名长则一定不匹配*/
             if (mes_len <= cur_name_len) {//如果目标歌名比当前歌名短或者长度相等
                 short flag_current_mes = 0;//两个循环标志
@@ -231,15 +231,15 @@ public class SearchActivity extends AppCompatActivity {
                 /***计算百分比匹配度*/
                 //相同的字符占目标歌名和当前歌名的平均比例
                 percent_matching_degree = (matching_degree / mes_len + matching_degree / cur_name_len) / 2;
-//                Log.w("SearchDetailActivity", "匹配度是"+matching_degree);
-//                Log.w("SearchDetailActivity", "匹配百分比是"+percent_matching_degree);
+//                Log.w("SearchActivity", "匹配度是"+matching_degree);
+//                Log.w("SearchActivity", "匹配百分比是"+percent_matching_degree);
                 //百分之百匹配，结束查找
                 if (percent_matching_degree == 1) {
                     search_list.add(songsList.get(i));
-//                    Log.w("SearchDetailActivity", "百分之百匹配,直接退出");
+//                    Log.w("SearchActivity", "百分之百匹配,直接退出");
                     break;
                 } else if (percent_matching_degree > 0.2) {//阈值为0.2
-//                    Log.w("SearchDetailActivity", "百分比匹配度大于阈值");
+//                    Log.w("SearchActivity", "百分比匹配度大于阈值");
                     search_list.add(songsList.get(i));
                 }
             }
@@ -249,14 +249,14 @@ public class SearchActivity extends AppCompatActivity {
         }//for (int i = 0; i < num_songs; i++)到此结束
 
         if (search_list.isEmpty()) {//如果搜索结果为空，提示
-            Toast.makeText(SearchActivity.this, "搜索结果为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchActivity.this, "找不到歌曲", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(SearchActivity.this, "搜索完毕，显示结果", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchActivity.this, "搜索完成", Toast.LENGTH_SHORT).show();
             try{
                 adapter_search.notifyDataSetChanged();
                 listView_search.setAdapter(adapter_search);
             }catch (Exception e){
-                Log.w("SearchDetailActivity",e);
+                Log.w("SearchActivity",e);
             }
 
             if(!search_list.isEmpty()){//搜索结果不为空
@@ -289,11 +289,11 @@ public class SearchActivity extends AppCompatActivity {
         int orientation = newConfig.orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             //竖屏操作
-            Log.w("SearchDetailActivity","竖屏");
+            Log.w("SearchActivity","竖屏");
         }
         else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             //横屏操作
-            Log.w("SearchDetailActivity","横屏");
+            Log.w("SearchActivity","横屏");
         }
     }
 }
