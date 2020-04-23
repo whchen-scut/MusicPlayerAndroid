@@ -6,11 +6,11 @@ for RDC Studio
 
 release：R.07版本  MusicPlayer_RDC.R.07.apk
 
-在 Pictures/ 文件夹可以看到R.06版本的运行图片
-
-
-
 # 更新日志
+
+**版本号 R.07.1**
+
+1. 删除 不必要的文件
 
 **版本号 R.07**
 
