@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 public class BaseActivity extends AppCompatActivity {
-    private static Context context;//内存泄露风险，待解决
+    private static Context context;
 
     /*活动首次创建的时候调用*/
     @Override

@@ -10,13 +10,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E6E1EF"
+        android:background="@drawable/list_view_rounded_corner"
         android:text="播放列表" />
 
     <ListView
         android:id="@+id/history_list_view"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#E6E1EF" />
+        android:background="#5FB0A1C5" />
 
 </LinearLayout>

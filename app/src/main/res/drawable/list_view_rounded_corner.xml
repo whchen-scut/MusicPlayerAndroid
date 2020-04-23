@@ -3,11 +3,7 @@
     android:shape="rectangle">
     <!-- 实心(填充) -->
     <solid
-        android:color="@color/shallow_violet_color"/>
-    <!-- 描边 -->
-    <stroke
-        android:width="1dp"
-        android:color="@color/black_color" />
+        android:color="#CDB5E3"/>
 <!--    内部边距-->
     <padding
         android:left="7dp"
@@ -15,6 +11,5 @@
         android:top="7dp"
         android:bottom="7dp" />
     <!-- 圆角 -->
-    <corners
-        android:radius="10dp" />
+    <corners android:radius="10dp"/>
 </shape>

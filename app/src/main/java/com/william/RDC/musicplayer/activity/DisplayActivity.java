@@ -93,7 +93,7 @@ public class DisplayActivity extends BaseActivity {
     private HeadsetPlugReceiver headsetReceiver = null;//耳机监听
     private StatusChangedReceiver statusChangedReceiver = null;//状态接收器，接收来自service的播放器状态信息
     private ProgressBarReceiver progressBarReceiver = null;
-    /*其它*/
+    /*其他功能*/
     private CountDownTimer countDownTimer = null;//倒计时,用于定时停止播放
 
     @Override
@@ -198,7 +198,7 @@ public class DisplayActivity extends BaseActivity {
     }
 
     /**
-     * 回退键   不返回登录界面
+     * 回退
      */
     @Override
     public void onBackPressed() {
@@ -269,16 +269,16 @@ public class DisplayActivity extends BaseActivity {
             try {
                 //耳机相关广播
                 if ("android.intent.action.HEADSET_PLUG".equalsIgnoreCase(intent.getAction())) {
-                    //Log.w("DisplayActivity", "耳机相关广播");
+                    Log.w("DisplayActivity", "耳机相关广播");
                     //有状态信息
                     if (intent.hasExtra("state")) {
-                        //Log.w("DisplayActivity", "有状态信息");
+                        Log.w("DisplayActivity", "有状态信息");
                         //耳机断开
                         if (intent.getIntExtra("state", 0) != 1) {
-                            //Log.w("DisplayActivity", "耳机断开");
+                            Log.w("DisplayActivity", "耳机断开");
                             //音乐正在播放
                             if (current_status == MusicService.STATUS_PLAYING) {
-                                //Log.w("DisplayActivity", "音乐正在播放");
+                                Log.w("DisplayActivity", "音乐正在播放");
                                 //音乐暂停
                                 sendBroadcastOnCommand(MusicService.COMMAND_PAUSE);
                             }
@@ -299,7 +299,7 @@ public class DisplayActivity extends BaseActivity {
                 SongsCollector.setSongsList(databaseOperation.loadAllSongs());
                 song_total_number = SongsCollector.size();
             }
-            //Log.w("DisplayActivity", "数据库为空，需要加载");
+            Log.w("DisplayActivity", "数据库为空，需要加载");
             ContentResolver contentResolver = getContentResolver();
             try (Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     null, null, null, null)) {

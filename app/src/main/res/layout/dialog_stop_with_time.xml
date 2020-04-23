@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_10"
-        android:text="倒计时关闭"
+        android:text="定时关闭播放"
         android:textSize="@dimen/sp_20" />
 
     <EditText

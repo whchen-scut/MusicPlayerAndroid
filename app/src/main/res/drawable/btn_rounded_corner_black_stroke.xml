@@ -5,11 +5,4 @@
 <!--    实心-->
     <solid
         android:color="@color/shallow_violet_color" />
-<!--    圆角-->
-    <corners
-        android:radius="10dp" />
-<!--    描边-->
-    <stroke
-        android:color="@color/black_color"
-        android:width="2px" />
 </shape>

@@ -90,7 +90,6 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
         windowHeight = getWindowManager().getDefaultDisplay().getHeight();
         playingView.setPictureRadius(windowWidth/4);
         album_icon = PictureDealHelper.getAlbumPicture(this,current_song.getDataPath(),windowWidth/4,windowWidth/4);
-        updateBackground();
         playingView.setPictureRes(album_icon);
         if(current_status == MusicService.STATUS_PLAYING){
             playingView.setPlaying(true);
@@ -335,8 +334,6 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
                     album_icon = PictureDealHelper.getAlbumPicture(context, current_song.getDataPath(),windowWidth/4,windowWidth/4);
                     playingView.setPictureRes(album_icon);
                     playingView.setPlaying(true);
-                    //更新activity背景
-                    updateBackground();
                     //历史播放记录adapter通知数据变化
                     adapter_history.notifyDataSetChanged();
                     break;
@@ -433,51 +430,6 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
         return true;
     }
 
-    /**
-     * 根据专辑图片提取颜色更新activity的背景*/
-    public void updateBackground(){
-        Palette.from(album_icon).generate(new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(@Nullable Palette palette) {
-                //暗、活跃
-                int darkMutedColor = palette.getDarkVibrantColor(default_darkColor);//如果分析不出来，则返回默认颜色
-                //亮、柔和
-                int lightMutedColor = palette.getLightMutedColor(default_lightColor);
-                int[] colors = {lightMutedColor,darkMutedColor};
-                GradientDrawable.Orientation orientation = null;
-                int orientation_flag = (int) (Math.random()*8);
-                switch (orientation_flag){
-                    case 0:
-                        orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-                        break;
-                    case 1:
-                        orientation = GradientDrawable.Orientation.TR_BL;
-                        break;
-                    case 2:
-                        orientation = GradientDrawable.Orientation.RIGHT_LEFT;
-                        break;
-                    case 3:
-                        orientation = GradientDrawable.Orientation.BR_TL;
-                        break;
-                    case 4:
-                        orientation = GradientDrawable.Orientation.BOTTOM_TOP;
-                        break;
-                    case 5:
-                        orientation = GradientDrawable.Orientation.BL_TR;
-                        break;
-                    case 6:
-                        orientation = GradientDrawable.Orientation.LEFT_RIGHT;
-                        break;
-                    default:
-                        orientation = GradientDrawable.Orientation.TL_BR;
-                        break;
-                }
-                GradientDrawable gradientBackground = new GradientDrawable(orientation,colors);
-                RelativeLayout root = findViewById(R.id.rootRv_songDetailActivity);
-                root.setBackground(gradientBackground);
-            }
-        });
-    }
 
     /**
      * 加载历史播放记录控件*/
