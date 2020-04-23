@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_60"
-        android:background="#F6F1E7"
+        android:background="#D9C8E3"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/share_album_icon"
                 android:layout_centerHorizontal="true"
-                android:text=" "
+                android:text="歌曲名"
                 android:textSize="@dimen/sp_20"
                 android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
                 android:layout_below="@+id/share_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dp_10"
-                android:text=" "
+                android:text="艺术家"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 

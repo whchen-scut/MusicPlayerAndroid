@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/back_black"
+        app:title="歌曲名"
+        app:subtitle="艺术家"
         app:subtitleTextColor="@color/black_color" />
     <RelativeLayout
         android:id="@+id/rv_album_icon_song_detail"

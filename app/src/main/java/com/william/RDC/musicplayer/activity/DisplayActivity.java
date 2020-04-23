@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -59,7 +61,7 @@ public class DisplayActivity extends BaseActivity {
     /*控件*/
     private Toolbar toolbar = null;//toolbar
     private ListView main_song_list_view = null;//歌曲列表
-    private SongAdapter adapter_main_song_list_view ;
+    private SongAdapter adapter_main_song_list_view;
     private SongAdapter adapter_history;//歌曲列表的适配器
     private ProgressBar progressBar_activity_display = null;//播放进度条
     private View play_bar_bottom = null;//底部播放控制栏
@@ -142,7 +144,7 @@ public class DisplayActivity extends BaseActivity {
             play_bar_song_name.setText(SongsCollector.getSong(current_number).getTitle());
             play_bar_song_author.setText(SongsCollector.getSong(current_number).getArtist());
             album_icon.setImageBitmap(
-                    PictureDealHelper.getAlbumPicture(this,SongsCollector.getSong(current_number).getDataPath(), 120, 120));
+                    PictureDealHelper.getAlbumPicture(this, SongsCollector.getSong(current_number).getDataPath(), 120, 120));
             if (current_status == MusicService.STATUS_PLAYING) {
                 //正在播放
                 play_bar_btn_play.setBackground(getDrawable(R.drawable.pause_32));
@@ -294,7 +296,7 @@ public class DisplayActivity extends BaseActivity {
     /**************加载歌曲数据************/
     private void load_Songs_data() {
         if (SongsCollector.size() == 0) {
-            if(!databaseOperation.isSONGS_Null()){
+            if (!databaseOperation.isSONGS_Null()) {
                 //数据库里面有数据,直接加载数据库里面的
                 SongsCollector.setSongsList(databaseOperation.loadAllSongs());
                 song_total_number = SongsCollector.size();
@@ -313,7 +315,7 @@ public class DisplayActivity extends BaseActivity {
                         if (isMusic != 0 && duration >= 2 * 60 * 1000) {
                             //文件路径
                             String dataPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
-                            if(SongsCollector.isContainSong(dataPath)){//数据库中已经有这首歌曲了,所以跳过
+                            if (SongsCollector.isContainSong(dataPath)) {//数据库中已经有这首歌曲了,所以跳过
                                 continue;
                             }
                             //歌名
@@ -330,7 +332,7 @@ public class DisplayActivity extends BaseActivity {
                                     dataPath,
                                     song_total_number,
                                     false,
-                                    PictureDealHelper.getAlbumPicture(this,dataPath,96,96)
+                                    PictureDealHelper.getAlbumPicture(this, dataPath, 96, 96)
                             );//R.drawable.song_item_picture是歌曲列表每一项前面那个图标
                             SongsCollector.addSong(song);
                             databaseOperation.saveSong(song);
@@ -399,7 +401,7 @@ public class DisplayActivity extends BaseActivity {
                     intent.putExtra("current_number", current_number);
                     intent.putExtra("current_status", current_status);
                     intent.putExtra("current_progress", current_progress);
-                    intent.putExtra("current_PlayMode",default_playMode);
+                    intent.putExtra("current_PlayMode", default_playMode);
                     startActivity(intent);
                 } else
                     Toast.makeText(DisplayActivity.this, "没有正在播放的音乐", Toast.LENGTH_SHORT).show();
@@ -436,9 +438,9 @@ public class DisplayActivity extends BaseActivity {
         btn_history_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(history_view.getVisibility() == View.GONE){
+                if (history_view.getVisibility() == View.GONE) {
                     history_view.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     history_view.setVisibility(View.GONE);
                 }
 
@@ -603,7 +605,7 @@ public class DisplayActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             //获取播放器状态
             int status = intent.getIntExtra("status", -1);
-            if(status != MusicService.PLAY_MODE_UPDATE)
+            if (status != MusicService.PLAY_MODE_UPDATE)
                 current_status = status;
             switch (status) {
                 //播放器状态更改为正在播放
@@ -640,7 +642,7 @@ public class DisplayActivity extends BaseActivity {
                 case MusicService.PLAY_MODE_UPDATE:
                     //顺序,单曲,随机 --->  8,9,10
                     //在弹窗中位置分别是0,1,2
-                    default_playMode = intent.getIntExtra("playMode",MusicService.PLAY_MODE_ORDER) - 8;
+                    default_playMode = intent.getIntExtra("playMode", MusicService.PLAY_MODE_ORDER) - 8;
                     break;
                 default:
                     break;
@@ -681,7 +683,7 @@ public class DisplayActivity extends BaseActivity {
         play_bar_song_author.setText(song.getArtist());
         //设置专辑图片
         //album_icon.setImageDrawable(getImage(songsList.get(current_number).getAlbum_id()));
-        album_icon.setImageBitmap(PictureDealHelper.getAlbumPicture(this,SongsCollector.getSong(current_number).getDataPath(), 120, 120));
+        album_icon.setImageBitmap(PictureDealHelper.getAlbumPicture(this, SongsCollector.getSong(current_number).getDataPath(), 120, 120));
     }
 
     /*** 定时停止播放*/
@@ -817,7 +819,7 @@ public class DisplayActivity extends BaseActivity {
                         DisplayActivity.this, new String[]{
                                 Manifest.permission.READ_EXTERNAL_STORAGE
                         }, REQ_READ_EXTERNAL_STORAGE);
-            }else{
+            } else {
                 load_Songs_data();//已有权限,加载歌曲
             }
         }
@@ -832,7 +834,7 @@ public class DisplayActivity extends BaseActivity {
             // 如果请求被取消了，那么结果数组就是空的
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // 权限被授予了
-                if (song_total_number == 0){
+                if (song_total_number == 0) {
                     load_Songs_data();//加载歌曲数据
                     initBottomMes(current_number);
                 }
@@ -856,3 +858,37 @@ public class DisplayActivity extends BaseActivity {
         }
     }
 }
+  /*  protected void setSystemBarTintDrawable(Drawable d) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            SystemBarTintManager mTintManager = new SystemBarTintManager(this);
+            if (d != null) {
+                mTintManager.setStatusBarTintEnabled(true);
+                mTintManager.setTintDrawable(d);
+            } else {
+                mTintManager.setStatusBarTintEnabled(false);
+                mTintManager.setTintDrawable(null);
+            }
+        }
+    }
+
+    *//**
+     * set status bar translucency
+     *
+     * @param on
+     *//*
+    protected void setTranslucentStatus(boolean on) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window win = getWindow();
+            WindowManager.LayoutParams winParams = win.getAttributes();
+            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+            if (on) {
+                winParams.flags |= bits;
+            } else {
+                winParams.flags &= ~bits;
+            }
+            win.setAttributes(winParams);
+        }
+    }
+}
+    注释：沉浸式通知栏需要导入implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    */

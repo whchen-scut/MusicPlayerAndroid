@@ -2,18 +2,20 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-<!--        <item name="android:windowTranslucentStatus">false</item>-->
-<!--        <item name="android:windowTranslucentNavigation">true</item>-->
-<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+      <!--
+      暂不启用沉浸通知栏
+      <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>-->
         <!-- Customize your theme here. -->
         <!--Appbar背景色，应用的主要色调，actionBar默认使用该颜色-->
-<!--        <item name="colorPrimary">@color/black_color</item>-->
+        <!--        <item name="colorPrimary">@color/black_color</item>-->
 
         <!--状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 
         <!--各个控制控件的默认颜色-->
-<!--        <item name="android:colorControlNormal">@color/white_color</item>-->
+        <!--        <item name="android:colorControlNormal">@color/white_color</item>-->
 
         <!--一般控件默认颜色-->
         <item name="colorAccent">@color/colorAccent</item>
@@ -22,20 +24,23 @@
         <item name="android:textColorSecondary">@color/white_color</item>
     </style>
     <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
-         <item name="android:button">@drawable/checkbox_style</item>
+        <item name="android:button">@drawable/checkbox_style</item>
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <!-- Gets rid of the search icon -->
         <item name="searchIcon">@drawable/search</item>
         <!-- Gets rid of the "underline" in the text -->
-<!--        <item name="queryBackground">@color/white</item>-->
+        <!--        <item name="queryBackground">@color/white</item>-->
         <!-- Gets rid of the search icon when the SearchView is expanded -->
         <item name="searchHintIcon">@null</item>
         <!-- The hint text that appears when the user has not typed anything -->
         <item name="queryHint">@string/search_hint</item>
     </style>
-<!--    <style name="TranslucentTheme" parent="AppTheme">
-        &lt;!&ndash;在Android 4.4之前的版本上运行，直接跟随系统主题&ndash;&gt;
+<!--    <style name="TranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        &lt;!&ndash;Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色&ndash;&gt;
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>-->
 </resources>
