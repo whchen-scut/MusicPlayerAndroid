@@ -12,7 +12,7 @@ import com.william.RDC.musicplayer.tool.PictureDealHelper;
 
 public class DatabaseOperation {
     //数据库名
-    public static final String DB_NAME = "Mung_Music";
+    public static final String DB_NAME = "Music";
     //数据库版本
     public static final int VERSION = 1;
     private volatile static DatabaseOperation databaseOperation;

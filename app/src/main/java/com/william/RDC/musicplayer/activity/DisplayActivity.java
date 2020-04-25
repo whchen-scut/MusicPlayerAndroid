@@ -11,7 +11,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -76,11 +74,8 @@ public class DisplayActivity extends BaseActivity {
     private ListView drawer_layout_list_view = null;//侧滑栏的listView
     private AlertDialog dialog = null;//定时停止播放得对话框
     private DrawerLayout drawerlayout = null;//侧滑栏
-    private ActionBarDrawerToggle drawerToggle = null;
     private TextView tv_intput = null;//定时停止播放的输入框
     private DatabaseOperation databaseOperation;
-    /*用于存储*/
-    private int duration = 0;//当前的歌曲的总时长
     private int current_progress = 0;//当前的歌曲播放进度
     private static int song_total_number = 0;//歌曲总数
     private int current_number = 0;//当前正在播放的歌曲
@@ -88,7 +83,6 @@ public class DisplayActivity extends BaseActivity {
     private int input_time = 0;//用于存储定时停止播放输入的时间
     private boolean pause_task_flag = false;//是否有定时停止任务的标志
     private double rest_of_time = 0;//用于存储定时停止播放任务的剩余时间
-    private int progress_broadcast_content = MusicService.PROGRESS_DURATION;//进度条的广播命令
     private final int REQ_READ_EXTERNAL_STORAGE = 1;//权限请求码,1代表读取外部存储权限,2代表写存储
     private int default_playMode = 0;//默认播放模式,用于打开单选框时默认选中位置的设置
     /*广播接收器*/
@@ -242,14 +236,10 @@ public class DisplayActivity extends BaseActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.display_toolbar_menu_search://toolbar上的搜索按钮
-                Intent intent_jump_toolbar_search =
-                        new Intent(DisplayActivity.this, SearchActivity.class);
-                startActivity(intent_jump_toolbar_search);
-                break;
-            default:
-                break;
+        if (item.getItemId() == R.id.display_toolbar_menu_search) {//toolbar上的搜索按钮
+            Intent intent_jump_toolbar_search =
+                    new Intent(DisplayActivity.this, SearchActivity.class);
+            startActivity(intent_jump_toolbar_search);
         }
         return true;
     }
@@ -467,7 +457,7 @@ public class DisplayActivity extends BaseActivity {
                         }
                         break;
                     case 3://反馈与建议
-                        feedbackAndSuggesttions();
+                        feedbackAndSuggestions();
                         drawerlayout.closeDrawer(GravityCompat.START);
                         break;
                     case 4://退出
@@ -488,7 +478,19 @@ public class DisplayActivity extends BaseActivity {
      */
     public void config_DrawerLayout() {
         drawerlayout = findViewById(R.id.drawer_layout);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerlayout, toolbar, R.string.app_name, R.string.app_name) {
+        //完全打开时触发
+        //Toast.makeText(DisplayActivity.this,"onDrawerOpened",Toast.LENGTH_SHORT).show();
+        //完全关闭时触发
+        //Toast.makeText(DisplayActivity.this,"onDrawerClosed",Toast.LENGTH_SHORT).show();
+        /**
+         * 当抽屉被滑动的时候调用此方法
+         * slideOffset表示 滑动的幅度（0-1）
+         */
+        /**
+         * 当抽屉滑动状态改变的时候被调用
+         * 状态值是STATE_IDLE（闲置--0）, STATE_DRAGGING（拖拽的--1）, STATE_SETTLING（固定--2）中之一。
+         */
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerlayout, toolbar, R.string.app_name, R.string.app_name) {
             @Override
             public void onDrawerOpened(View drawerView) {//完全打开时触发
                 super.onDrawerOpened(drawerView);
@@ -539,7 +541,7 @@ public class DisplayActivity extends BaseActivity {
         DrawerLayoutListViewItem stopWithTime = new DrawerLayoutListViewItem(R.drawable.stop_with_time, "定时关闭播放");
         DrawerLayoutListViewItem play_mode_select = new DrawerLayoutListViewItem(R.drawable.setting, "设置播放模式");
         DrawerLayoutListViewItem feedback_suggestions = new DrawerLayoutListViewItem(R.drawable.about, "关于");
-        DrawerLayoutListViewItem exit = new DrawerLayoutListViewItem(R.drawable.exit_2, "退出");
+        DrawerLayoutListViewItem exit = new DrawerLayoutListViewItem(R.drawable.exit, "退出");
         drawer_list_view_content.add(myLoveSongs);
         drawer_list_view_content.add(play_mode_select);
         drawer_list_view_content.add(stopWithTime);
@@ -648,11 +650,14 @@ public class DisplayActivity extends BaseActivity {
     class ProgressBarReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            progress_broadcast_content = intent.getIntExtra("content", 0);
+            //进度条的广播命令
+            int progress_broadcast_content = intent.getIntExtra("content", 0);
             switch (progress_broadcast_content) {
                 case MusicService.PROGRESS_DURATION:
                     //Log.w("DisplayActivity","PROGRESS_DURATION");
-                    duration = intent.getIntExtra("duration", 0);
+                    /*用于存储*/
+                    //当前的歌曲的总时长
+                    int duration = intent.getIntExtra("duration", 0);
                     progressBar_activity_display.setMax(duration);
                     break;
                 case MusicService.PROGRESS_UPDATE:
@@ -737,7 +742,7 @@ public class DisplayActivity extends BaseActivity {
                 }
                 dialog.dismiss();
                 pause_task_flag = false;
-                Toast.makeText(DisplayActivity.this, "任务已经取消", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DisplayActivity.this, "定时关闭已经取消", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -788,7 +793,7 @@ public class DisplayActivity extends BaseActivity {
     /**
      * 关于
      */
-    public void feedbackAndSuggesttions() {
+    public void feedbackAndSuggestions() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.about))
                 .setIcon(R.drawable.about)
@@ -850,6 +855,9 @@ public class DisplayActivity extends BaseActivity {
         }
     }
 }
+    /*
+    * 沉浸式状态栏
+    **/
   /*  protected void setSystemBarTintDrawable(Drawable d) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             SystemBarTintManager mTintManager = new SystemBarTintManager(this);

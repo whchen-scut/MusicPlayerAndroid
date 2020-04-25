@@ -6,11 +6,10 @@ import java.util.List;
 public class PlayHistory {
     private static List<Song> songs = new ArrayList<>();
     public static void addSong(Song song) {
-        if(songs.contains(song))
-            songs.remove(song);
+        songs.remove(song);
         songs.add(song);
     }
-    public static void removeSong(Song song) {
+    private static void removeSong(Song song) {
         songs.remove(song);
     }
 

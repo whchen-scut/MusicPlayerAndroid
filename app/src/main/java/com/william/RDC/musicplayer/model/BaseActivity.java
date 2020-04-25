@@ -1,7 +1,10 @@
 package com.william.RDC.musicplayer.model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
@@ -58,12 +61,12 @@ public class BaseActivity extends AppCompatActivity {
         Log.w("BaseActivity", getClass().getSimpleName()+"进入onBackPressed");
     }
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         Log.w("BaseActivity", getClass().getSimpleName()+"进入onSaveInstanceState");
     }
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState){
+    public void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         Log.w("BaseActivity", getClass().getSimpleName()+"进入onRestoreInstanceState");
     }

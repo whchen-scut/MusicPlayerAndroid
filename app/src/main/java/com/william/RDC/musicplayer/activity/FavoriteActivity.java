@@ -20,7 +20,6 @@ import com.william.RDC.musicplayer.tool.SongAdapter;
 
 public class FavoriteActivity extends BaseActivity {
     private static List<Song> myLoveSongs = new ArrayList<>();//有序可重复
-    private static DatabaseOperation databaseOperation;
     private int current_number,current_status,actual_number;
     @Override
     protected void onCreate(Bundle saveInstanceState){
@@ -38,7 +37,7 @@ public class FavoriteActivity extends BaseActivity {
             }
         });
         //数据库相关
-        databaseOperation = DatabaseOperation.getInstance(this);
+        DatabaseOperation databaseOperation = DatabaseOperation.getInstance(this);
         //list相关
         myLoveSongs = databaseOperation.loadMyLoveSongs();//从数据库加载,注意加载出来的这些Song对象没有设置专辑图片
         SongAdapter adapter = new SongAdapter(this,R.layout.song_list_item,myLoveSongs);

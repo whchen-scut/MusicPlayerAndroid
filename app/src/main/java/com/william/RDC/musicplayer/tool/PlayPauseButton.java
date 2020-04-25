@@ -7,9 +7,9 @@ import android.widget.LinearLayout;
 
 import com.william.RDC.musicplayer.R;
 
-public class PlayPauseBtn extends LinearLayout {
+public class PlayPauseButton extends LinearLayout {
     //命名空间
-    private static String NAMESPACE = "http://schemas.android.com/apk/res/edu.whut.ruansong.musicplayer.tool";
+    private static String NAMESPACE = "http://schemas.android.com/apk/res/com.william.RDC.musicplayer.tool";
     private int playImage = 0;
     private int pauseImage = 0;
     private boolean isPlay = true;
@@ -19,7 +19,7 @@ public class PlayPauseBtn extends LinearLayout {
      * @param context
      * 组件没有属性没有样式时
      */
-    public PlayPauseBtn(Context context) {
+    public PlayPauseButton(Context context) {
         super(context);
         initView();
     }
@@ -29,7 +29,7 @@ public class PlayPauseBtn extends LinearLayout {
      * @param context
      * 该组件在声明时调用了样式
      */
-    public PlayPauseBtn(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PlayPauseButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }
@@ -39,7 +39,7 @@ public class PlayPauseBtn extends LinearLayout {
      * @param context
      * 该组件在声明时只有属性
      */
-    public PlayPauseBtn(Context context, AttributeSet attrs) {
+    public PlayPauseButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 获取图片的Int值
         playImage = attrs.getAttributeResourceValue(NAMESPACE, "play", R.drawable.play_5_gray);
@@ -57,7 +57,6 @@ public class PlayPauseBtn extends LinearLayout {
         View.inflate(getContext(), R.layout.play_pause_btn, this);
         this.setClickable(true);
         if(pauseImage == 0){
-            return ;
         }else{
             setIsStart(isPlay);
         }

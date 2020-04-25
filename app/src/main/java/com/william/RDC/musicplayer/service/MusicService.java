@@ -19,15 +19,14 @@ import com.william.RDC.musicplayer.model.SongsCollector;
 
 public class MusicService extends Service {
     //广播标识
-    public static final String BROADCAST_MUSICSERVICE_CONTROL = "MusicService.ACTTION_CONTROL";
-    public static final String BROADCAST_MUSICSERVICE_UPDATE_STATUS = "MusicService.ACTTION_UPDATE";
+    public static final String BROADCAST_MUSICSERVICE_CONTROL = "MusicService.ACTION_CONTROL";
+    public static final String BROADCAST_MUSICSERVICE_UPDATE_STATUS = "MusicService.ACTION_UPDATE";
     public static final String BROADCAST_MUSICSERVICE_PROGRESS = "MusicService.PROGRESS";
     //播放器状态
     public static final int STATUS_PLAYING = 0;
     public static final int STATUS_PAUSED = 1;
     public static final int STATUS_STOPPED = 2;
     public static final int STATUS_COMPLETED = 3;
-//    public static final int STATUS_PREVIOUS = 4;
     //progressBar相关
     public static final int PROGRESS_UPDATE = 4;
     public static final int PROGRESS_DURATION = 5;

@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 import com.william.RDC.musicplayer.R;
@@ -20,16 +22,14 @@ import com.william.RDC.musicplayer.model.Song;
 
 public class SongAdapter extends ArrayAdapter<Song> {
     private int resourceId;//用来放置布局文件的id
-    private Context context;
 
     //适配器的构造函数
     public SongAdapter(Context context, int textViewResourceId, List<Song> objects) {
         super(context, textViewResourceId, objects);
-        this.context = context;
         resourceId = textViewResourceId;
     }
 
-    class ViewHolder {
+    static class ViewHolder {
 
         ImageView songImage;
 
@@ -40,8 +40,9 @@ public class SongAdapter extends ArrayAdapter<Song> {
     }
 
     //这个方法在每个子项被滚动到屏幕内的时候会被调用
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         Song song = getItem(position); // 获取当前项的Song实例
         View view;//子项布局对象
         ViewHolder viewHolder;//内部类对象

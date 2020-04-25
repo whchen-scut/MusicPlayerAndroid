@@ -85,7 +85,7 @@ public class ShareActivity extends BaseActivity implements View.OnClickListener 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss", Locale.getDefault());
         Date date = new Date(System.currentTimeMillis());
         String picture_name = format.format(date)+".png";
-        File share_picture_path = new File(Environment.getExternalStorageDirectory().getPath()+"/MungMusic/share_picture/");
+        File share_picture_path = new File(Environment.getExternalStorageDirectory().getPath()+"/MusicPicture/share_picture/");
         if (!share_picture_path.exists()) {//这个目录不存在则创建
             boolean flag = share_picture_path.mkdirs();
             if(!flag){//创建失败
@@ -93,7 +93,7 @@ public class ShareActivity extends BaseActivity implements View.OnClickListener 
                 return;
             }
         }
-        File picture_path = new File(Environment.getExternalStorageDirectory().getPath()+"/MungMusic/share_picture",picture_name);
+        File picture_path = new File(Environment.getExternalStorageDirectory().getPath()+"/MusicPicture/share_picture",picture_name);
         if(picture_path.exists()){
             Toast.makeText(ShareActivity.this,"图片已经保存",Toast.LENGTH_SHORT).show();
             return;
@@ -139,7 +139,7 @@ public class ShareActivity extends BaseActivity implements View.OnClickListener 
             // 如果请求被取消了，那么结果数组就是空的
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 flag_write_storage = true;
-                Toast.makeText(ShareActivity.this, "读写存储权限申请成功", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ShareActivity.this, "读写存储权限申请成功", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(ShareActivity.this, "读写存储权限申请失败", Toast.LENGTH_SHORT).show();
             }

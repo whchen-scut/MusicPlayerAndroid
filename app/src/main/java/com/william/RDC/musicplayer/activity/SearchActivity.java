@@ -3,6 +3,7 @@ package com.william.RDC.musicplayer.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.SearchView;
@@ -29,9 +30,7 @@ import com.william.RDC.musicplayer.tool.SongAdapter;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private Toolbar toolbar = null;
     private List<Song> songsList = null;
-    private int num_songs = 0;
     private List<Song> search_list = new ArrayList<>();//用来装查询结果
     private int current_number = 0;//当前正在播放的歌曲
     private int current_status;//播放状态默认为停止
@@ -45,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detail);
         Log.w("SearchActivity", "进入onCreate");
-        toolbar = findViewById(R.id.toolbar_activity_display);
+        Toolbar toolbar = findViewById(R.id.toolbar_activity_display);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         current_status = MusicService.getCurrent_status();
         search_LinearLayout = findViewById(R.id.search_LinearLayout);
         listView_search = findViewById(R.id.list_search);
-        /***设置search_list歌曲item点击事件   以便可以点击搜素结果 播放歌曲*/
+        /*设置search_list歌曲item点击事件   以便可以点击搜素结果 播放歌曲*/
         listView_search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -188,7 +187,7 @@ public class SearchActivity extends AppCompatActivity {
         int mes_len = charArray_mes.length;//获得这个字符数组的长度
         //获取本地歌曲列表
         songsList = SongsCollector.getSongsList();
-        num_songs = songsList.size();
+        int num_songs = songsList.size();
         if (songsList.isEmpty() || !(SongsCollector.size()>0)  ) {
             Toast.makeText(SearchActivity.this, "本地没有找到音频，您可以到浏览器下载。", Toast.LENGTH_SHORT).show();
             return;
@@ -208,11 +207,11 @@ public class SearchActivity extends AppCompatActivity {
             //当前歌曲名转换为的字符数组的长度
             cur_name_len = charArray_current_song_name.length;
 //            Log.w("SearchActivity", "目标长度"+mes_len+"    当前歌名长度"+cur_name_len);
-            /**目标歌名比当前歌名长则一定不匹配*/
+            /*目标歌名比当前歌名长则一定不匹配*/
             if (mes_len <= cur_name_len) {//如果目标歌名比当前歌名短或者长度相等
                 short flag_current_mes = 0;//两个循环标志
                 short flag_input_mes = 0;
-                /***计算匹配值*/
+                /*计算匹配值*/
                 //循环比较每一个字符
                 while (true) {
                     //有一个字符相同
@@ -228,11 +227,9 @@ public class SearchActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                /***计算百分比匹配度*/
+                /*计算百分比匹配度*/
                 //相同的字符占目标歌名和当前歌名的平均比例
                 percent_matching_degree = (matching_degree / mes_len + matching_degree / cur_name_len) / 2;
-//                Log.w("SearchActivity", "匹配度是"+matching_degree);
-//                Log.w("SearchActivity", "匹配百分比是"+percent_matching_degree);
                 //百分之百匹配，结束查找
                 if (percent_matching_degree == 1) {
                     search_list.add(songsList.get(i));
@@ -245,8 +242,7 @@ public class SearchActivity extends AppCompatActivity {
             }
             //匹配度清零
             matching_degree = 0;
-            percent_matching_degree = 0;
-        }//for (int i = 0; i < num_songs; i++)到此结束
+        }
 
         if (search_list.isEmpty()) {//如果搜索结果为空，提示
             Toast.makeText(SearchActivity.this, "找不到歌曲", Toast.LENGTH_SHORT).show();
@@ -284,7 +280,7 @@ public class SearchActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         int orientation = newConfig.orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {

@@ -15,5 +15,5 @@
     <dimen name="sp_15">15sp</dimen>
     <dimen name="sp_20">20sp</dimen>
 
-    <dimen name="px_5">5px</dimen>
+    <dimen name="px_5">5dp</dimen>
 </resources>

@@ -22,7 +22,7 @@ public class DrawerLayoutListViewAdapter extends ArrayAdapter<DrawerLayoutListVi
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
-    class ViewHolder {
+    static class ViewHolder {
 
         ImageView itemImage;
 
