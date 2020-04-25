@@ -250,8 +250,8 @@ public class SearchActivity extends AppCompatActivity {
 
         if (search_list.isEmpty()) {//如果搜索结果为空，提示
             Toast.makeText(SearchActivity.this, "找不到歌曲", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(SearchActivity.this, "搜索完成", Toast.LENGTH_SHORT).show();
+        }
+        else {
             try{
                 adapter_search.notifyDataSetChanged();
                 listView_search.setAdapter(adapter_search);

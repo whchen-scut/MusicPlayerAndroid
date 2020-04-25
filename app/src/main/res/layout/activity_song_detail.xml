@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             app:picture_radius="100dp"
-            app:disk_rotate_speed="0.3"
+            app:disk_rotate_speed="0.2"
             app:src="@drawable/album_svg_32"/>
     </RelativeLayout>
     <RelativeLayout

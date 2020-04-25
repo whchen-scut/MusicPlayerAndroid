@@ -295,13 +295,6 @@ public class DisplayActivity extends BaseActivity {
 
     /**************加载歌曲数据************/
     private void load_Songs_data() {
-        if (SongsCollector.size() == 0) {
-            if (!databaseOperation.isSONGS_Null()) {
-                //数据库里面有数据,直接加载数据库里面的
-                SongsCollector.setSongsList(databaseOperation.loadAllSongs());
-                song_total_number = SongsCollector.size();
-            }
-            Log.w("DisplayActivity", "数据库为空，需要加载");
             ContentResolver contentResolver = getContentResolver();
             try (Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     null, null, null, null)) {
@@ -311,8 +304,8 @@ public class DisplayActivity extends BaseActivity {
                         int isMusic = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC));
                         //时长
                         long duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
-                        //是音乐并且时长大于3分钟
-                        if (isMusic != 0 && duration >= 2 * 60 * 1000) {
+                        //是音乐并且时长大于1分钟
+                        if (isMusic != 0 && duration >= 60 * 1000) {
                             //文件路径
                             String dataPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
                             if (SongsCollector.isContainSong(dataPath)) {//数据库中已经有这首歌曲了,所以跳过
@@ -349,7 +342,6 @@ public class DisplayActivity extends BaseActivity {
             //更新toolbar的标题
             toolbar.setTitle(getResources().getString(R.string.title_toolbar));
         }
-    }
 
     /******统一处理点击事件**************/
     public void dealClick() {

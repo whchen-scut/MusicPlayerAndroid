@@ -31,9 +31,9 @@ public class PlayingView extends View {
      */
 
     private int halfMeasureWidth;// 绘制唱片相关变量
-    private static final int DEFAULT_PICTURE_RADIUS = 400;// 中间图片默认半径
+    private static final int DEFAULT_PICTURE_RADIUS = 1000;// 中间图片默认半径
     // 唱片旋转默认速度，其实是通过每次旋转叠加的角度来控制速度
-    private static final float DEFAULT_DISK_ROTATE_SPEED = 0.3f;
+    private static final float DEFAULT_DISK_ROTATE_SPEED = 0.2f;
     private int pictureRadius;    // 中间图片的半径
     private int ringWidth;        // 黑色圆环宽度
     private float diskRotateSpeed;// 唱片旋转速度
