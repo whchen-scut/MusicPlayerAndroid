@@ -14,15 +14,8 @@ public class DrawerLayoutListViewItem {
         return item_picture;
     }
 
-    public void setItem_picture(int item_picture) {
-        this.item_picture = item_picture;
-    }
-
     public String getItem_title() {
         return item_title;
     }
 
-    public void setItem_title(String item_title) {
-        this.item_title = item_title;
-    }
 }

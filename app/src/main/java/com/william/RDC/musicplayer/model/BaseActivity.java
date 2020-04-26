@@ -1,12 +1,11 @@
 package com.william.RDC.musicplayer.model;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 
 public class BaseActivity extends AppCompatActivity {
     private static Context context;

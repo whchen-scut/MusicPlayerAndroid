@@ -8,8 +8,6 @@ import android.widget.LinearLayout;
 import com.william.RDC.musicplayer.R;
 
 public class PlayPauseButton extends LinearLayout {
-    //命名空间
-    private static String NAMESPACE = "http://schemas.android.com/apk/res/com.william.RDC.musicplayer.tool";
     private int playImage = 0;
     private int pauseImage = 0;
     private boolean isPlay = true;
@@ -42,6 +40,8 @@ public class PlayPauseButton extends LinearLayout {
     public PlayPauseButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 获取图片的Int值
+        //命名空间
+        String NAMESPACE = "http://schemas.android.com/apk/res/com.william.RDC.musicplayer.tool";
         playImage = attrs.getAttributeResourceValue(NAMESPACE, "play", R.drawable.play_5_gray);
         pauseImage = attrs.getAttributeResourceValue(NAMESPACE, "pause", R.drawable.pause_5_gray);
         initView();
@@ -56,11 +56,9 @@ public class PlayPauseButton extends LinearLayout {
     private void initView(){
         View.inflate(getContext(), R.layout.play_pause_btn, this);
         this.setClickable(true);
-        if(pauseImage == 0){
-        }else{
+        if(pauseImage != 0)
             setIsStart(isPlay);
         }
-    }
     /**
      * 通过传进一个boolean值，设置按钮的状态
      * @param isStart 设置开始或者暂停的状态

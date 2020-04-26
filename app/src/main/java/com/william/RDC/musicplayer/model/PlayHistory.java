@@ -9,17 +9,9 @@ public class PlayHistory {
         songs.remove(song);
         songs.add(song);
     }
-    private static void removeSong(Song song) {
-        songs.remove(song);
-    }
 
     public static List<Song> getSongs() {
         return songs;
     }
 
-    public static void removeAll() {
-        for (Song song : songs) {
-          removeSong(song);
-        }
-    }
 }

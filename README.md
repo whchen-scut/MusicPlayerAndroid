@@ -1,20 +1,28 @@
 # Music Player for Android
 
-for RDC Studio
+**for RDC Studio**
 
 状态：开发中
 
-release：R.09版本  MusicPlayer_RDC.R.09.apk
+release：F.01版本  MusicPlayer_RDC.F.01.apk
 
 # 更新日志
+
+**版本号 F.01**
+
+正式版本F.01已经可用。
+
+**支持的功能：**
+
+基本音频播放与控制、收藏喜爱的音乐、显示播放列表、设置播放模式、定时关闭播放、在通知栏显示通知、
+
+# 历史版本提供的改善
 
 **版本号 R.09**
 
 1. 优化 减少消息提示
 2. 优化 规范代码
 3. 删除 不必要的文件
-
-# 历史版本提供的改善
 
 **版本号 R.08**
 
