@@ -2,7 +2,7 @@
 
 **for RDC Studio**
 
-状态：开发中
+状态：评估中
 
 release：F.01版本  MusicPlayer_RDC.F.01.apk
 
