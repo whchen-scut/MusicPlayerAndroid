@@ -66,6 +66,8 @@
             tools:ignore="LockedOrientationActivity">
 
         </activity>
+        <activity android:name=".model.BaseActivity" />
+
         <service
             android:name="com.william.RDC.musicplayer.service.MusicService"
             android:exported="true" />

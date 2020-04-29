@@ -1,6 +1,5 @@
 package com.william.RDC.musicplayer.model;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -8,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
-    private static Context context;
-
     /*活动首次创建的时候调用*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +65,5 @@ public class BaseActivity extends AppCompatActivity {
     public void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         Log.w("BaseActivity", getClass().getSimpleName()+"进入onRestoreInstanceState");
-    }
-    public static Context getContext() {
-        return context;
     }
 }

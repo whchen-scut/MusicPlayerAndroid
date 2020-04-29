@@ -7,9 +7,9 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "F.01"
+        versionName "F.01.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//        适配安卓Q
+        //适配安卓Q
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -21,7 +21,7 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "MusicPlayer_RDC.F.01.apk"
+            outputFileName = "MusicPlayer_RDC.F.01.2.apk"
         }
     }
 
@@ -30,14 +30,11 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.palette:palette:1.0.0'
-
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation('androidx.annotation:annotation:1.1.0') {
-
         force = true
-
     }
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'

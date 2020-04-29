@@ -2,11 +2,15 @@
 
 **for RDC Studio**
 
-状态：评估中
+状态：已结束    最终版本：F.01.2
 
 release：F.01版本  MusicPlayer_RDC.F.01.apk
 
 # 更新日志
+
+**版本号 F.01.2**
+
+优化 部分代码
 
 **版本号 F.01**
 
