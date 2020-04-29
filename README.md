@@ -1,8 +1,6 @@
 # Music Player for Android
 
-**for RDC Studio**
-
-状态：已结束    最终版本：F.01.1
+**状态：已结束**    	最终版本：F.01.1
 
 release：F.01版本  MusicPlayer_RDC.F.01.apk
 
