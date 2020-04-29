@@ -45,7 +45,7 @@ public class FavoriteActivity extends BaseActivity {
         listView.setAdapter(adapter);
         current_number = MusicService.getCurrent_number();
         current_status = MusicService.getCurrent_status();
-        /*设置search_list歌曲item点击事件   以便可以点击搜素结果 播放歌曲*/
+        /***设置search_list歌曲item点击事件   以便可以点击搜素结果 播放歌曲*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

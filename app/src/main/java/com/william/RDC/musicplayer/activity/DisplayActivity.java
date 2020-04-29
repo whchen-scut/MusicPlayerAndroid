@@ -74,7 +74,7 @@ public class DisplayActivity extends BaseActivity {
     private ListView drawer_layout_list_view = null;//侧滑栏的listView
     private AlertDialog dialog = null;//定时停止播放得对话框
     private DrawerLayout drawerlayout = null;//侧滑栏
-    private TextView tv_input = null;//定时停止播放的输入框
+    private TextView tv_intput = null;//定时停止播放的输入框
     private DatabaseOperation databaseOperation;
     private int current_progress = 0;//当前的歌曲播放进度
     private static int song_total_number = 0;//歌曲总数
@@ -674,7 +674,7 @@ public class DisplayActivity extends BaseActivity {
     /**
      * 设置底部的一栏左侧的歌曲名和歌手以及专辑图片
      ***/
-    public void initBottomMes(int position) {
+    public void initBottomMes(int position) {//
         Song song = SongsCollector.getSong(position);//获取点击位置的song对象
         play_bar_song_name.setText(song.getTitle());
         play_bar_song_author.setText(song.getArtist());
@@ -693,13 +693,13 @@ public class DisplayActivity extends BaseActivity {
         Button b_ok = dialogView.findViewById(R.id.btn_time_ok);
         Button b_cancel = dialogView.findViewById(R.id.btn_time_cancel);
         final TextView tv_rest_of_time = dialogView.findViewById(R.id.rest_of_time);
-        tv_input = dialogView.findViewById(R.id.input_time);
+        tv_intput = dialogView.findViewById(R.id.input_time);
         if (!pause_task_flag) {//无任务
             b_cancel.setVisibility(View.INVISIBLE);//取消按钮不可见
             tv_rest_of_time.setVisibility(View.INVISIBLE);//剩余时间文本框不可见
         } else {//有任务
             b_ok.setVisibility(View.INVISIBLE);//建立任务按钮不可见
-            tv_input.setVisibility(View.INVISIBLE);//输入框不可见
+            tv_intput.setVisibility(View.INVISIBLE);//输入框不可见
             DecimalFormat df = new DecimalFormat("0.00 ");
             StringBuilder rest = new StringBuilder("剩余: " + df.format(rest_of_time) + "分钟");
             tv_rest_of_time.setText(rest);
@@ -708,12 +708,12 @@ public class DisplayActivity extends BaseActivity {
         b_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (tv_input.getText().toString().equals("")) {
+                if (tv_intput.getText().toString().equals("")) {
                     //Log.w("DisplayActivity","输入时间为空");
                     Toast.makeText(DisplayActivity.this, "请输入时间", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                input_time = Integer.parseInt(tv_input.getText().toString());//获取输入的时间
+                input_time = Integer.parseInt(tv_intput.getText().toString());//获取输入的时间
                 Toast.makeText(DisplayActivity.this, input_time + "分钟后将自动关闭播放", Toast.LENGTH_SHORT).show();
                 //倒计时任务
                 countDownTimer = new CountDownTimer(input_time * 60 * 1000, 1000) {

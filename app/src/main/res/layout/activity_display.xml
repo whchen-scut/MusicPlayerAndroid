@@ -22,7 +22,7 @@
             app:navigationIcon="@drawable/menu_gray"
             app:title="@string/title_toolbar"
             app:titleTextColor="@color/white_color" />
-        <!--相对布局-->
+<!--相对布局-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

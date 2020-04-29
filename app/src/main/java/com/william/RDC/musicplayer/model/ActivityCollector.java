@@ -8,11 +8,11 @@ import java.util.List;
 public class ActivityCollector {
     private static List<AppCompatActivity> activities = new ArrayList<>();
 
-    static void addActivity(AppCompatActivity activity) {
+    public static void addActivity(AppCompatActivity activity) {
         activities.add(activity);
     }
 
-    static void removeActivity(AppCompatActivity activity) {
+    public static void removeActivity(AppCompatActivity activity) {
         activities.remove(activity);
     }
 

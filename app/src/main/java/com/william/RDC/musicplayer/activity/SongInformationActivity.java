@@ -44,7 +44,7 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
     private int current_number,current_status,current_progress,duration,current_PlayMode;
     private Song current_song;
     private ArrayList<Song> myLoveSongs;//歌曲列表
-    private TextView duration_text,current_progress_text;
+    private TextView song_name,song_artist,duration_text,current_progress_text;
     private ImageView play_pause_action,pre_action,next_action,playMode;
     private SeekBar seekBar;
     private ProgressBarReceiver progressBarReceiver ;
@@ -54,6 +54,8 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
     private PlayingView playingView;
     private int windowWidth,windowHeight;
     private Bitmap album_icon = null;
+    private int default_lightColor;
+    private int default_darkColor;
     private ImageView btn_history_view ;
     private LinearLayout lv_history ;
     private ListView list_history ;
@@ -62,6 +64,8 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_song_detail);
+        default_lightColor = getResources().getColor(R.color.shallow_violet_color);
+        default_darkColor = getResources().getColor(R.color.shallow_green_color);
         toolbar = findViewById(R.id.toolbar_detail_activity);//toolbar栏
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {//toolbar回退键
@@ -397,7 +401,6 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
             Field field = popupMenu.getClass().getDeclaredField("mPopup");
             field.setAccessible(true);
             MenuPopupHelper helper = (MenuPopupHelper) field.get(popupMenu);
-            assert helper != null;
             helper.setForceShowIcon(true);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
@@ -413,12 +416,16 @@ public class SongInformationActivity extends BaseActivity implements View.OnClic
     /*menu的点击事件*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId() == R.id.song_detail_toolbar_menu_share) {
-            Intent intent = new Intent(SongInformationActivity.this, ShareActivity.class);
-            intent.putExtra("dataPath", current_song.getDataPath());
-            intent.putExtra("title", current_song.getTitle());
-            intent.putExtra("artist", current_song.getArtist());
-            startActivity(intent);
+        switch (item.getItemId()){
+            case R.id.song_detail_toolbar_menu_share:
+                Intent intent = new Intent(SongInformationActivity.this,ShareActivity.class);
+                intent.putExtra("dataPath",current_song.getDataPath());
+                intent.putExtra("title",current_song.getTitle());
+                intent.putExtra("artist",current_song.getArtist());
+                startActivity(intent);
+                break;
+            default:
+                break;
         }
         return true;
     }
